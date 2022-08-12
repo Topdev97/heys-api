@@ -1,5 +1,5 @@
 # heys-back-end
-Node.js back-end server
+Node.js && Postgresql back-end server
 ## Project setup
 ```
 npm install
