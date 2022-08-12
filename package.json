@@ -1,0 +1,34 @@
+{
+  "name": "heystack-express-postgresql-backend",
+  "version": "1.0.0",
+  "description": "heystack backend Rest Apis with Express, Sequelize & PostgreSQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heystacks/heys-back-end.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize",
+    "postgresql",
+    "rest",
+    "api"
+  ],
+  "author": "CryptoAngel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heystacks/heys-back-end/issues"
+  },
+  "homepage": "https://github.com/heystacks/heys-back-end#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.3"
+  }
+}
