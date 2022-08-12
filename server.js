@@ -28,6 +28,7 @@ db.sequelize
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to heystack application." });
 });
+require("./app/routes/gathering.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
