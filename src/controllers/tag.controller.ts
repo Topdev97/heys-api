@@ -1,10 +1,10 @@
-const db = require("../models");
+import db from "../db";
 const Tag = db.tag;
 const Document = db.document;
 const Gathering = db.gathering;
 const Op = db.Sequelize.Op;
 
-exports.create = (req, res) => {
+async function create(req, res) {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -51,9 +51,9 @@ exports.create = (req, res) => {
         message: err.message || "Some error occurred while creating the Tag.",
       });
     });
-};
+}
 
-exports.findByDocumentId = (req, res) => {
+async function findByDocumentId(req, res) {
   const documentId = req.query.documentId;
   Document.findByPk(documentId, {
     include: [
@@ -77,9 +77,9 @@ exports.findByDocumentId = (req, res) => {
         message: err.message || "Some error occurred while retrieving Tag.",
       });
     });
-};
+}
 
-exports.findByGatheringId = (req, res) => {
+async function findByGatheringId(req, res) {
   const gatheringId = req.query.gatheringId;
   var condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
   Document.findAll({
@@ -103,4 +103,10 @@ exports.findByGatheringId = (req, res) => {
           err.message || "Some error occurred while retrieving Document.",
       });
     });
+}
+
+module.exports = {
+  create,
+  findByDocumentId,
+  findByGatheringId,
 };

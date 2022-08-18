@@ -1,8 +1,9 @@
-const db = require("../models");
+import db from "../db";
 const Gathering = db.gathering;
 const Op = db.Sequelize.Op;
+
 // Create and Save a new Gathering
-exports.create = (req, res) => {
+async function create(req, res) {
   // Validate request
   if (!req.body.name) {
     res.status(400).send({
@@ -22,7 +23,7 @@ exports.create = (req, res) => {
   };
 
   // Save Gathering in the database
-  Gathering.create(gathering)
+  await Gathering.create(gathering)
     .then((data) => {
       res.send(data);
     })
@@ -32,10 +33,10 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while creating the Gathering.",
       });
     });
-};
+}
 // Retrieve all Gathering from the database.
-exports.findAll = (req, res) => {
-  Gathering.findAll({ order: [['updatedAt', 'DESC']], limit: 10,})
+async function findAll(req, res) {
+  await Gathering.findAll({ order: [["updatedAt", "DESC"]], limit: 10 })
     .then((data) => {
       res.send(data);
     })
@@ -45,12 +46,12 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving Gathering.",
       });
     });
-};
+}
 // Find a single Gathering with an id
-exports.findOne = (req, res) => {
+async function findOne(req, res) {
   const id = req.params.id;
 
-  Gathering.findByPk(id)
+  await Gathering.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
@@ -65,12 +66,12 @@ exports.findOne = (req, res) => {
         message: "Error retrieving Gathering with id=" + id,
       });
     });
-};
+}
 // Update a Gathering by the id in the request
-exports.update = (req, res) => {
+async function update(req, res) {
   const id = req.params.id;
 
-  Gathering.update(req.body, {
+  await Gathering.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
@@ -89,12 +90,12 @@ exports.update = (req, res) => {
         message: "Error updating Gathering with id=" + id,
       });
     });
-};
+}
 // Delete a Gathering with the specified id in the request
-exports.delete = (req, res) => {
+async function deleteOne(req, res) {
   const id = req.params.id;
 
-  Gathering.destroy({
+  await Gathering.destroy({
     where: { id: id },
   })
     .then((num) => {
@@ -113,10 +114,10 @@ exports.delete = (req, res) => {
         message: "Could not delete Gathering with id=" + id,
       });
     });
-};
+}
 // Delete all Gathering from the database.
-exports.deleteAll = (req, res) => {
-  Gathering.destroy({
+async function deleteAll(req, res) {
+  await Gathering.destroy({
     where: {},
     truncate: false,
   })
@@ -129,4 +130,13 @@ exports.deleteAll = (req, res) => {
           err.message || "Some error occurred while removing all gathering.",
       });
     });
+}
+
+module.exports = {
+  create,
+  findAll,
+  findOne,
+  update,
+  deleteOne,
+  deleteAll,
 };
