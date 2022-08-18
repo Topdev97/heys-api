@@ -1,5 +1,5 @@
 module.exports = app => {
-    const document = require("../controllers/document.controller.js");
+    const document = require("../controllers/document.controller.ts");
     var router = require("express").Router();
     // Create a new Document
     router.post("/", document.create);
@@ -10,7 +10,7 @@ module.exports = app => {
     // Update a Document with id
     router.put("/:id", document.update);
     // Delete a Document with id
-    router.delete("/:id", document.delete);
+    router.delete("/:id", document.deleteOne);
     // Delete all Document
     router.delete("/", document.deleteAll);
     app.use('/api/document', router);

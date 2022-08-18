@@ -1,5 +1,5 @@
 module.exports = app => {
-    const gathering = require("../controllers/gathering.controller.js");
+    const gathering = require("../controllers/gathering.controller.ts");
     var router = require("express").Router();
     // Create a new Gathering
     router.post("/", gathering.create);
@@ -10,7 +10,7 @@ module.exports = app => {
     // Update a Gathering with id
     router.put("/:id", gathering.update);
     // Delete a Gathering with id
-    router.delete("/:id", gathering.delete);
+    router.delete("/:id", gathering.deleteOne);
     // Create a new Gathering
     router.delete("/", gathering.deleteAll);
     app.use('/api/gathering', router);

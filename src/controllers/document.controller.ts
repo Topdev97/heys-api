@@ -1,8 +1,8 @@
-const db = require("../models");
+import db from "../db";
 const Document = db.document;
 const Op = db.Sequelize.Op;
 // Create and Save a new Document
-exports.create = (req, res) => {
+async function create(req, res) {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -37,11 +37,11 @@ exports.create = (req, res) => {
     forks: req.body.forks,
     dateNow: req.body.dateNow,
     approved: req.body.approved,
-    hotScore: req.body.hotScore
+    hotScore: req.body.hotScore,
   };
 
   // Save Document in the database
-  Document.create(document)
+  await Document.create(document)
     .then((data) => {
       res.send(data);
     })
@@ -51,12 +51,16 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while creating the Document.",
       });
     });
-};
+}
 // Retrieve all Document from the database.
-exports.findAll = (req, res) => {
+async function findAll(req, res) {
   const gatheringId = req.query.gatheringId;
   var condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
-  Document.findAll({ order: [['updatedAt', 'DESC']], where: condition, limit: 10,})
+  await Document.findAll({
+    order: [["updatedAt", "DESC"]],
+    where: condition,
+    limit: 10,
+  })
     .then((data) => {
       res.send(data);
     })
@@ -66,12 +70,12 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving Document.",
       });
     });
-};
+}
 // Find a single Document with an id
-exports.findOne = (req, res) => {
+async function findOne(req, res) {
   const id = req.params.id;
 
-  Document.findByPk(id)
+  await Document.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
@@ -86,12 +90,12 @@ exports.findOne = (req, res) => {
         message: "Error retrieving Document with id=" + id,
       });
     });
-};
+}
 // Update a Document by the id in the request
-exports.update = (req, res) => {
+async function update(req, res) {
   const id = req.params.id;
 
-  Document.update(req.body, {
+  await Document.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
@@ -110,12 +114,12 @@ exports.update = (req, res) => {
         message: "Error updating Document with id=" + id,
       });
     });
-};
+}
 // Delete a Document with the specified id in the request
-exports.delete = (req, res) => {
+async function deleteOne(req, res) {
   const id = req.params.id;
 
-  Document.destroy({
+  await Document.destroy({
     where: { id: id },
   })
     .then((num) => {
@@ -134,10 +138,10 @@ exports.delete = (req, res) => {
         message: "Could not delete Document with id=" + id,
       });
     });
-};
+}
 // Delete all Document from the database.
-exports.deleteAll = (req, res) => {
-  Document.destroy({
+async function deleteAll(req, res) {
+  await Document.destroy({
     where: {},
     truncate: false,
   })
@@ -150,4 +154,13 @@ exports.deleteAll = (req, res) => {
           err.message || "Some error occurred while removing all Document.",
       });
     });
+}
+
+module.exports = {
+  create,
+  findAll,
+  findOne,
+  update,
+  deleteOne,
+  deleteAll,
 };

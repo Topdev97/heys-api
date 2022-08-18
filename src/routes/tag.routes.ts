@@ -1,5 +1,5 @@
 module.exports = app => {
-    const tag = require("../controllers/tag.controller.js");
+    const tag = require("../controllers/tag.controller.ts");
     var router = require("express").Router();
     // Create a new tag
     router.post("/", tag.create);
