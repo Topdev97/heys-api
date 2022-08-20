@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
     },
 
     upvotes: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       defaultsTo: 0,
     },
 
