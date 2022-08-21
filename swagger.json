@@ -1,0 +1,1183 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Heystack - RestAPI",
+    "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "gathering"
+    },
+    {
+      "name": "document"
+    },
+    {
+      "name": "comment"
+    },
+    {
+      "name": "tag"
+    }
+  ],
+  "paths": {
+    "/api/gathering": {
+      "post": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Add a new gathering",
+        "description": "Add a new gathering to the gathering",
+        "operationId": "addGathering",
+        "requestBody": {
+          "description": "Create a new gathering in the gathering",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gathering"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatheringResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Get latest 10 gathering",
+        "description": "No required request body",
+        "operationId": "getGahtering",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GatheringResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/api/gathering/{gatheringId}": {
+      "get": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Find pet by ID",
+        "description": "Returns a single gathering",
+        "operationId": "getGatheringById",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "ID of gathering to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatheringResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Gathering not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Update an existing gathering",
+        "description": "Update an existing gathering by Id",
+        "operationId": "updateGathering",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "ID of gathering to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent gathering",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Gathering"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Gathering was updated successfully."
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Gathering not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Deletes a gathering",
+        "description": "delete a gathering",
+        "operationId": "deleteGatheringById",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "Gathering id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gathering were deleted successfully"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Gathering not found"
+          }
+        }
+      }
+    },
+    "/gathering": {
+      "delete": {
+        "tags": [
+          "gathering"
+        ],
+        "summary": "Deletes all gathering",
+        "description": "delete all gathering",
+        "operationId": "deleteGathering",
+        "responses": {
+          "200": {
+            "description": "Gathering were deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/document": {
+      "post": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Add a new document",
+        "description": "Add a new document to the document",
+        "operationId": "addDocument",
+        "requestBody": {
+          "description": "Create a new document in the document",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Get latest 10 document",
+        "description": "No required request body",
+        "operationId": "getDocument",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DocumentResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Delete all document",
+        "description": "delete all document",
+        "operationId": "deleteDocument",
+        "responses": {
+          "200": {
+            "description": "Gathering were deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/document/{documentId}": {
+      "get": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Find document by ID",
+        "description": "Returns a single document",
+        "operationId": "getDocumentById",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "description": "ID of document to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Update an existing document",
+        "description": "Update an existing document by Id",
+        "operationId": "updateDocument",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "description": "ID of document to update",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent document",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Document"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Document was updated successfully."
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Gathering not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "document"
+        ],
+        "summary": "Delete a document",
+        "description": "delete a document",
+        "operationId": "deleteDocumentById",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "path",
+            "description": "document id to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document were deleted successfully"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    },
+    "/api/comment": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Add a new comment",
+        "description": "Add a new comment to the comment",
+        "operationId": "addComment",
+        "requestBody": {
+          "description": "Create a new comment in the comment",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Comment"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Delete all comment",
+        "description": "delete all comment",
+        "operationId": "deleteComment",
+        "responses": {
+          "200": {
+            "description": "Document were deleted successfully"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Find comment by specific document Id",
+        "description": "Returns a single comment",
+        "operationId": "getCommentByDocumentId",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "query",
+            "description": "ID of document to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    },
+    "/api/comment/{commentId}": {
+      "delete": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Delete a comment by comment Id",
+        "description": "Returns a single comment",
+        "operationId": "deleteCommentByCommentId",
+        "parameters": [
+          {
+            "name": "commentId",
+            "in": "path",
+            "description": "ID of comment to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Comment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Comment not found"
+          }
+        }
+      }
+    },
+    "/api/tag": {
+      "post": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Create a tag by document ID",
+        "description": "Create a single tag by specific document Id",
+        "operationId": "createTagByDocumentId",
+        "requestBody": {
+          "description": "Create a new gathering in the gathering",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    },
+    "/api/tag/bydocid": {
+      "get": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Find tag by document ID",
+        "description": "Returns a single",
+        "operationId": "getTagByDocumentId",
+        "parameters": [
+          {
+            "name": "documentId",
+            "in": "query",
+            "description": "ID of document to return tag",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    },
+    "/api/tag/bygatherid": {
+      "get": {
+        "tags": [
+          "tag"
+        ],
+        "summary": "Find tag by gahtering ID",
+        "description": "Returns a single document",
+        "operationId": "getTagByGatheringId",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "query",
+            "description": "ID of document to return tag",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Document not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Gathering": {
+        "required": [
+          "name",
+          "slug",
+          "description",
+          "upvotes",
+          "owners",
+          "customisation"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "name"
+          },
+          "slug": {
+            "type": "string",
+            "example": "slug"
+          },
+          "description": {
+            "type": "string",
+            "example": "This is an example"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "owners": {
+            "type": "object",
+            "example": {
+              "emailAddress": "x",
+              "nickname": "y"
+            }
+          },
+          "customisation": {
+            "type": "object",
+            "example": {
+              "bannerColor": "red",
+              "year": 2020
+            }
+          }
+        }
+      },
+      "GatheringResponse": {
+        "required": [
+          "name",
+          "slug",
+          "description",
+          "upvotes",
+          "owners",
+          "customisation"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "name"
+          },
+          "slug": {
+            "type": "string",
+            "example": "slug"
+          },
+          "description": {
+            "type": "string",
+            "example": "This is an example"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "owners": {
+            "type": "object",
+            "example": {
+              "emailAddress": "x",
+              "nickname": "y"
+            }
+          },
+          "customisation": {
+            "type": "object",
+            "example": {
+              "bannerColor": "red",
+              "year": 2020
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2022-08-20T09:33:17.808Z"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2022-08-20T09:33:17.808Z"
+          }
+        }
+      },
+      "Document": {
+        "required": [
+          "title",
+          "slug",
+          "url",
+          "docUid",
+          "description",
+          "tags",
+          "upvotes",
+          "views",
+          "readeds",
+          "clicks",
+          "permissions",
+          "meta",
+          "payments",
+          "allowNotifications",
+          "hallOfFame",
+          "contentDate",
+          "content",
+          "spacesArr",
+          "archived",
+          "ads",
+          "allowForks",
+          "forks",
+          "dateNow",
+          "approved"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "name"
+          },
+          "slug": {
+            "type": "string",
+            "example": "slug"
+          },
+          "url": {
+            "type": "string",
+            "example": "./test.js"
+          },
+          "docUid": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "description": {
+            "type": "string",
+            "example": "This is a test"
+          },
+          "tags": {
+            "type": "string",
+            "example": "tags"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "views": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "readeds": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "clicks": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "permissions": {
+            "type": "object"
+          },
+          "meta": {
+            "type": "object"
+          },
+          "payments": {
+            "type": "object"
+          },
+          "allowNotifications": {
+            "type": "boolean",
+            "example": true
+          },
+          "hallOfFame": {
+            "type": "object"
+          },
+          "contentDate": {
+            "type": "integer",
+            "example": 2022
+          },
+          "content": {
+            "type": "string",
+            "example": "content"
+          },
+          "spacesArr": {
+            "type": "string",
+            "example": [
+              "1",
+              "3"
+            ]
+          },
+          "archived": {
+            "type": "boolean",
+            "example": false
+          },
+          "ads": {
+            "type": "boolean",
+            "example": false
+          },
+          "allowForks": {
+            "type": "boolean",
+            "example": false
+          },
+          "forks": {
+            "type": "object",
+            "example": {
+              "original": "",
+              "arr": [
+                {
+                  "emailAddress": "",
+                  "id": ""
+                }
+              ]
+            }
+          },
+          "dateNow": {
+            "type": "integer",
+            "example": 2022
+          },
+          "approved": {
+            "type": "boolean",
+            "example": false
+          },
+          "hotScore": {
+            "type": "integer",
+            "example": 100
+          }
+        }
+      },
+      "DocumentResponse": {
+        "required": [
+          "title",
+          "slug",
+          "url",
+          "docUid",
+          "description",
+          "tags",
+          "upvotes",
+          "views",
+          "readeds",
+          "clicks",
+          "permissions",
+          "meta",
+          "payments",
+          "allowNotifications",
+          "hallOfFame",
+          "contentDate",
+          "content",
+          "spacesArr",
+          "archived",
+          "ads",
+          "allowForks",
+          "forks",
+          "dateNow",
+          "approved"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "title": {
+            "type": "string",
+            "example": "name"
+          },
+          "slug": {
+            "type": "string",
+            "example": "slug"
+          },
+          "url": {
+            "type": "string",
+            "example": "./test.js"
+          },
+          "docUid": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "description": {
+            "type": "string",
+            "example": "This is a test"
+          },
+          "tags": {
+            "type": "string",
+            "example": "tags"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "views": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "readeds": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "clicks": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "permissions": {
+            "type": "object"
+          },
+          "meta": {
+            "type": "object"
+          },
+          "payments": {
+            "type": "object"
+          },
+          "allowNotifications": {
+            "type": "boolean",
+            "example": true
+          },
+          "hallOfFame": {
+            "type": "object"
+          },
+          "contentDate": {
+            "type": "integer",
+            "example": 2022
+          },
+          "content": {
+            "type": "string",
+            "example": "content"
+          },
+          "spacesArr": {
+            "type": "string",
+            "example": [
+              "1",
+              "3"
+            ]
+          },
+          "archived": {
+            "type": "boolean",
+            "example": false
+          },
+          "ads": {
+            "type": "boolean",
+            "example": false
+          },
+          "allowForks": {
+            "type": "boolean",
+            "example": false
+          },
+          "forks": {
+            "type": "object",
+            "example": {
+              "original": "",
+              "arr": [
+                {
+                  "emailAddress": "",
+                  "id": ""
+                }
+              ]
+            }
+          },
+          "dateNow": {
+            "type": "integer",
+            "example": 2022
+          },
+          "approved": {
+            "type": "boolean",
+            "example": false
+          },
+          "hotScore": {
+            "type": "integer",
+            "example": 100
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2022-08-14T20:16:06.607Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2022-08-14T20:25:52.052Z"
+          }
+        }
+      },
+      "Comment": {
+        "required": [
+          "id",
+          "type",
+          "text",
+          "nickname",
+          "emailAddress",
+          "upvotes",
+          "replyTo"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "text": {
+            "type": "string",
+            "example": "example text"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "Dragon"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "replyTo": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      },
+      "CommentResponse": {
+        "required": [
+          "id",
+          "type",
+          "text",
+          "nickname",
+          "emailAddress",
+          "upvotes",
+          "replyTo"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "text": {
+            "type": "string",
+            "example": "example text"
+          },
+          "nickname": {
+            "type": "string",
+            "example": "Dragon"
+          },
+          "upvotes": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "replyTo": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2022-08-14T20:16:06.607Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2022-08-14T20:25:52.052Z"
+          }
+        }
+      },
+      "Tag": {
+        "required": [
+          "type",
+          "count"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "example": "important"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      }
+    },
+    "requestBodies": {
+      "Gathering": {
+        "description": "object that needs to be added to the store",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Gathering"
+            }
+          }
+        }
+      },
+      "UserArray": {
+        "description": "List of user object",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Gathering"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

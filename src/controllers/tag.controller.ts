@@ -19,6 +19,7 @@ async function create(req, res) {
     count: req.body.count,
     // documentId: req.body.documentId
   };
+  const documentId = req.query.documentId;
   // Save Tag in the database
   Tag.findByPk(newTag.id)
     .then((tag) => {
@@ -35,7 +36,7 @@ async function create(req, res) {
             });
           });
       }
-      Document.findByPk(req.body.documentId).then((document) => {
+      Document.findByPk(documentId).then((document) => {
         if (!document) {
           console.log("Document not found!");
           return null;
@@ -70,7 +71,7 @@ async function findByDocumentId(req, res) {
     ],
   })
     .then((data) => {
-      res.send(data);
+      res.send(data.tag);
     })
     .catch((err) => {
       res.status(500).send({
@@ -95,7 +96,13 @@ async function findByGatheringId(req, res) {
     limit: 10,
   })
     .then((data) => {
-      res.send(data);
+      let tagResult = []
+      data.forEach(element => {
+        if (!tagResult.includes(element.tag)) {
+          tagResult.push(element.tag)
+        }
+      });
+      res.send(tagResult);
     })
     .catch((err) => {
       res.status(500).send({
