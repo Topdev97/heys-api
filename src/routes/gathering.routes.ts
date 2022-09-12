@@ -1,6 +1,6 @@
 module.exports = app => {
     const gathering = require("../controllers/gathering.controller.ts");
-    var router = require("express").Router();
+    const router = require("express").Router();
     // Create a new Gathering
     router.post("/", gathering.create);
     // Retrieve all Gatherings

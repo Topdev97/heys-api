@@ -6,9 +6,10 @@ import bearerToken from "express-bearer-token";
 import errorMiddleware from "./src/middlewares/error.middleware"
 import swaggerUi from "swagger-ui-express"
 const swaggerDocument = require('./swagger.json');
+import 'dotenv/config'
 
 const app = express();
-const port = 8080;
+const port = process.env.PORT ?? 3000;
 
 const cors = require("cors");
 if (process.env.NODE_ENV === "production") {
@@ -21,8 +22,8 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.use(
     cors({
-      origin: "http://localhost:3000",
-      credentials: true,
+      origin: "*",
+      credentials: false,
     })
   );
 }

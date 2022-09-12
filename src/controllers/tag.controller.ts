@@ -82,7 +82,7 @@ async function findByDocumentId(req, res) {
 
 async function findByGatheringId(req, res) {
   const gatheringId = req.query.gatheringId;
-  var condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
+  const condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
   Document.findAll({
     order: [["updatedAt", "DESC"]],
     where: condition,
@@ -96,7 +96,7 @@ async function findByGatheringId(req, res) {
     limit: 10,
   })
     .then((data) => {
-      let tagResult = []
+      const tagResult = []
       data.forEach(element => {
         if (!tagResult.includes(element.tag)) {
           tagResult.push(element.tag)

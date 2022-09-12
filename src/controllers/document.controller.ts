@@ -55,7 +55,7 @@ async function create(req, res) {
 // Retrieve all Document from the database.
 async function findAll(req, res) {
   const gatheringId = req.query.gatheringId;
-  var condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
+  const condition = gatheringId ? { gatheringId: `${gatheringId}` } : null;
   await Document.findAll({
     order: [["updatedAt", "DESC"]],
     where: condition,

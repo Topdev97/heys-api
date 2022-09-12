@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "Swagger Heystack - RestAPI",
-    "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about",
+    "description": "OpenAPI 3.0 specification.",
     "version": "1.0.0"
   },
   "tags": [

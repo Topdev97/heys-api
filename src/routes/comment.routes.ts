@@ -1,6 +1,6 @@
 module.exports = app => {
     const comment = require("../controllers/comment.controller.ts");
-    var router = require("express").Router();
+    const router = require("express").Router();
     // Create a new comment
     router.post("/", comment.create);
     // Retrieve all comments

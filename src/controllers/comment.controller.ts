@@ -36,7 +36,7 @@ async function create(req, res) {
 // Retrieve all Comment from the database.
 async function findAll(req, res) {
   const documentId = req.query.documentId;
-  var condition = documentId ? { documentId: `${documentId}` } : null;
+  const condition = documentId ? { documentId: `${documentId}` } : null;
   await Comment.findAll({ order: [["upvotes", "DESC"]], where: condition, limit: 10 })
     .then((data) => {
       res.send(data);
