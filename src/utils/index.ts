@@ -6,5 +6,5 @@ function emptyOrRows(rows) {
 }
 
 module.exports = {
-  emptyOrRows
+  emptyOrRows,
 }

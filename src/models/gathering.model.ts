@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const gathering = sequelize.define("gathering", {
+  const gathering = sequelize.define('gathering', {
     name: {
       type: Sequelize.STRING,
       required: true,
@@ -31,7 +31,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
       description: 'e.g. {bannerColor: "red", year: 2020}',
     },
-  });
+  })
 
-  return gathering;
-};
+  return gathering
+}
