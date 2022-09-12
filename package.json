@@ -1,7 +1,6 @@
 {
-  "name": "heystack-api",
+  "name": "heys-api",
   "version": "1.0.0",
-  "description": "",
   "main": "server.ts",
   "scripts": {
     "start": "nodemon --exec \\\"ts-node\\\" server.ts",
@@ -12,8 +11,7 @@
     "prettier": "prettier --check . --loglevel warn",
     "prettier:fix": "npm run prettier -- --write"
   },
-  "author": "",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "devDependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.8",
