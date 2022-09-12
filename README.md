@@ -1,4 +1,4 @@
-# heys-back-end
+# heys-api
 Node.js && Postgresql back-end server
 ## Project setup
 ```
