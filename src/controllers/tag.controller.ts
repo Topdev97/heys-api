@@ -1,6 +1,6 @@
 import db from '../db'
 const Tag = db.tag
-const Document = db.document
+const Doc = db.doc
 const Gathering = db.gathering
 const Op = db.Sequelize.Op
 
@@ -17,9 +17,9 @@ async function create(req, res) {
     id: req.body.id,
     title: req.body.title,
     count: req.body.count,
-    // documentId: req.body.documentId
+    // docId: req.body.docId
   }
-  const documentId = req.query.documentId
+  const docId = req.query.docId
   // Save Tag in the database
   Tag.findByPk(newTag.id)
     .then(tag => {
@@ -34,14 +34,14 @@ async function create(req, res) {
             })
           })
       }
-      Document.findByPk(documentId).then(document => {
-        if (!document) {
-          console.log('Document not found!')
+      Doc.findByPk(docId).then(doc => {
+        if (!doc) {
+          console.log('Doc not found!')
           return null
         }
-        tag.addDocument(document)
+        tag.addDoc(doc)
         res.send({
-          message: `>> added Tutorial id=${document.id} to Tag id=${tag.id} successfully`,
+          message: `>> added Tutorial id=${doc.id} to Tag id=${tag.id} successfully`,
         })
       })
     })
@@ -52,9 +52,9 @@ async function create(req, res) {
     })
 }
 
-async function findByDocumentId(req, res) {
-  const documentId = req.query.documentId
-  Document.findByPk(documentId, {
+async function findByDocId(req, res) {
+  const docId = req.query.docId
+  Doc.findByPk(docId, {
     include: [
       {
         model: Tag,
@@ -81,7 +81,7 @@ async function findByDocumentId(req, res) {
 async function findByGatheringId(req, res) {
   const gatheringId = req.query.gatheringId
   const condition = gatheringId ? { gatheringId: `${gatheringId}` } : null
-  Document.findAll({
+  Doc.findAll({
     order: [['updatedAt', 'DESC']],
     where: condition,
     include: [
@@ -104,13 +104,13 @@ async function findByGatheringId(req, res) {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving Document.',
+        message: err.message || 'Some error occurred while retrieving Doc.',
       })
     })
 }
 
 module.exports = {
   create,
-  findByDocumentId,
+  findByDocId,
   findByGatheringId,
 }

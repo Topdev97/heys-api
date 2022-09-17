@@ -1,7 +1,7 @@
 import db from '../db'
-const Document = db.document
+const Doc = db.doc
 const Op = db.Sequelize.Op
-// Create and Save a new Document
+// Create and Save a new Doc
 async function create(req, res) {
   // Validate request
   if (!req.body.title) {
@@ -11,8 +11,8 @@ async function create(req, res) {
     return
   }
 
-  // Create a Document
-  const document = {
+  // Create a Doc
+  const doc = {
     title: req.body.title,
     slug: req.body.slug,
     url: req.body.description,
@@ -40,22 +40,22 @@ async function create(req, res) {
     hotScore: req.body.hotScore,
   }
 
-  // Save Document in the database
-  await Document.create(document)
+  // Save Doc in the database
+  await Doc.create(doc)
     .then(data => {
       res.send(data)
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while creating the Document.',
+        message: err.message || 'Some error occurred while creating the Doc.',
       })
     })
 }
-// Retrieve all Document from the database.
+// Retrieve all Doc from the database.
 async function findAll(req, res) {
   const gatheringId = req.query.gatheringId
   const condition = gatheringId ? { gatheringId: `${gatheringId}` } : null
-  await Document.findAll({
+  await Doc.findAll({
     order: [['updatedAt', 'DESC']],
     where: condition,
     limit: 10,
@@ -65,90 +65,90 @@ async function findAll(req, res) {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving Document.',
+        message: err.message || 'Some error occurred while retrieving Doc.',
       })
     })
 }
-// Find a single Document with an id
+// Find a single Doc with an id
 async function findOne(req, res) {
   const id = req.params.id
 
-  await Document.findByPk(id)
+  await Doc.findByPk(id)
     .then(data => {
       if (data) {
         res.send(data)
       } else {
         res.status(404).send({
-          message: `Cannot find Document with id=${id}.`,
+          message: `Cannot find Doc with id=${id}.`,
         })
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: 'Error retrieving Document with id=' + id,
+        message: 'Error retrieving Doc with id=' + id,
       })
     })
 }
-// Update a Document by the id in the request
+// Update a Doc by the id in the request
 async function update(req, res) {
   const id = req.params.id
 
-  await Document.update(req.body, {
+  await Doc.update(req.body, {
     where: { id: id },
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Document was updated successfully.',
+          message: 'Doc was updated successfully.',
         })
       } else {
         res.send({
-          message: `Cannot update Document with id=${id}. Maybe Document was not found or req.body is empty!`,
+          message: `Cannot update Doc with id=${id}. Maybe Doc was not found or req.body is empty!`,
         })
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: 'Error updating Document with id=' + id,
+        message: 'Error updating Doc with id=' + id,
       })
     })
 }
-// Delete a Document with the specified id in the request
+// Delete a Doc with the specified id in the request
 async function deleteOne(req, res) {
   const id = req.params.id
 
-  await Document.destroy({
+  await Doc.destroy({
     where: { id: id },
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: 'Document was deleted successfully!',
+          message: 'Doc was deleted successfully!',
         })
       } else {
         res.send({
-          message: `Cannot delete Document with id=${id}. Maybe Document was not found!`,
+          message: `Cannot delete Doc with id=${id}. Maybe Doc was not found!`,
         })
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: 'Could not delete Document with id=' + id,
+        message: 'Could not delete Doc with id=' + id,
       })
     })
 }
-// Delete all Document from the database.
+// Delete all Doc from the database.
 async function deleteAll(req, res) {
-  await Document.destroy({
+  await Doc.destroy({
     where: {},
     truncate: false,
   })
     .then(nums => {
-      res.send({ message: `${nums} Document were deleted successfully!` })
+      res.send({ message: `${nums} Doc were deleted successfully!` })
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while removing all Document.',
+        message: err.message || 'Some error occurred while removing all Doc.',
       })
     })
 }

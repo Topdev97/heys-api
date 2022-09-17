@@ -3,8 +3,8 @@ module.exports = app => {
   const router = require('express').Router()
   // Create a new tag
   router.post('/', tag.create)
-  // Retrieve all tag by documentId
-  router.get('/bydocid', tag.findByDocumentId)
+  // Retrieve all tag by docId
+  router.get('/bydocid', tag.findByDocId)
   // Retrieve all tag by gatheringid
   router.get('/bygatherid', tag.findByGatheringId)
 

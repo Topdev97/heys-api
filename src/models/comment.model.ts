@@ -31,8 +31,8 @@ module.exports = (sequelize, Sequelize) => {
       defaultsTo: -1,
     },
 
-    // document: {
-    //   model: "document",
+    // doc: {
+    //   model: "doc",
     // },
   })
 

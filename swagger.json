@@ -10,7 +10,7 @@
       "name": "gathering"
     },
     {
-      "name": "document"
+      "name": "doc"
     },
     {
       "name": "comment"
@@ -201,18 +201,18 @@
         }
       }
     },
-    "/api/document": {
+    "/api/doc": {
       "post": {
-        "tags": ["document"],
-        "summary": "Add a new document",
-        "description": "Add a new document to the document",
-        "operationId": "addDocument",
+        "tags": ["doc"],
+        "summary": "Add a new doc",
+        "description": "Add a new doc to the doc",
+        "operationId": "addDoc",
         "requestBody": {
-          "description": "Create a new document in the document",
+          "description": "Create a new doc in the doc",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Document"
+                "$ref": "#/components/schemas/Doc"
               }
             }
           },
@@ -224,7 +224,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DocumentResponse"
+                  "$ref": "#/components/schemas/DocResponse"
                 }
               }
             }
@@ -235,10 +235,10 @@
         }
       },
       "get": {
-        "tags": ["document"],
-        "summary": "Get latest 10 document",
+        "tags": ["doc"],
+        "summary": "Get latest 10 doc",
         "description": "No required request body",
-        "operationId": "getDocument",
+        "operationId": "getDoc",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -247,7 +247,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/DocumentResponse"
+                    "$ref": "#/components/schemas/DocResponse"
                   }
                 }
               }
@@ -259,10 +259,10 @@
         }
       },
       "delete": {
-        "tags": ["document"],
-        "summary": "Delete all document",
-        "description": "delete all document",
-        "operationId": "deleteDocument",
+        "tags": ["doc"],
+        "summary": "Delete all doc",
+        "description": "delete all doc",
+        "operationId": "deleteDoc",
         "responses": {
           "200": {
             "description": "Gathering were deleted successfully"
@@ -270,17 +270,17 @@
         }
       }
     },
-    "/api/document/{documentId}": {
+    "/api/doc/{docId}": {
       "get": {
-        "tags": ["document"],
-        "summary": "Find document by ID",
-        "description": "Returns a single document",
-        "operationId": "getDocumentById",
+        "tags": ["doc"],
+        "summary": "Find doc by ID",
+        "description": "Returns a single doc",
+        "operationId": "getDocById",
         "parameters": [
           {
-            "name": "documentId",
+            "name": "docId",
             "in": "path",
-            "description": "ID of document to return",
+            "description": "ID of doc to return",
             "required": true,
             "schema": {
               "type": "integer",
@@ -294,7 +294,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DocumentResponse"
+                  "$ref": "#/components/schemas/DocResponse"
                 }
               }
             }
@@ -303,20 +303,20 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       },
       "put": {
-        "tags": ["document"],
-        "summary": "Update an existing document",
-        "description": "Update an existing document by Id",
-        "operationId": "updateDocument",
+        "tags": ["doc"],
+        "summary": "Update an existing doc",
+        "description": "Update an existing doc by Id",
+        "operationId": "updateDoc",
         "parameters": [
           {
-            "name": "documentId",
+            "name": "docId",
             "in": "path",
-            "description": "ID of document to update",
+            "description": "ID of doc to update",
             "required": true,
             "schema": {
               "type": "integer",
@@ -325,11 +325,11 @@
           }
         ],
         "requestBody": {
-          "description": "Update an existent document",
+          "description": "Update an existent doc",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Document"
+                "$ref": "#/components/schemas/Doc"
               }
             }
           },
@@ -337,7 +337,7 @@
         },
         "responses": {
           "200": {
-            "description": "Document was updated successfully."
+            "description": "Doc was updated successfully."
           },
           "400": {
             "description": "Invalid ID supplied"
@@ -351,15 +351,15 @@
         }
       },
       "delete": {
-        "tags": ["document"],
-        "summary": "Delete a document",
-        "description": "delete a document",
-        "operationId": "deleteDocumentById",
+        "tags": ["doc"],
+        "summary": "Delete a doc",
+        "description": "delete a doc",
+        "operationId": "deleteDocById",
         "parameters": [
           {
-            "name": "documentId",
+            "name": "docId",
             "in": "path",
-            "description": "document id to delete",
+            "description": "doc id to delete",
             "required": true,
             "schema": {
               "type": "integer",
@@ -369,13 +369,13 @@
         ],
         "responses": {
           "200": {
-            "description": "Document were deleted successfully"
+            "description": "Doc were deleted successfully"
           },
           "400": {
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       }
@@ -420,20 +420,20 @@
         "operationId": "deleteComment",
         "responses": {
           "200": {
-            "description": "Document were deleted successfully"
+            "description": "Doc were deleted successfully"
           }
         }
       },
       "get": {
         "tags": ["comment"],
-        "summary": "Find comment by specific document Id",
+        "summary": "Find comment by specific doc Id",
         "description": "Returns a single comment",
-        "operationId": "getCommentByDocumentId",
+        "operationId": "getCommentByDocId",
         "parameters": [
           {
-            "name": "documentId",
+            "name": "docId",
             "in": "query",
-            "description": "ID of document to return",
+            "description": "ID of doc to return",
             "required": true,
             "schema": {
               "type": "integer",
@@ -456,7 +456,7 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       }
@@ -502,9 +502,9 @@
     "/api/tag": {
       "post": {
         "tags": ["tag"],
-        "summary": "Create a tag by document ID",
-        "description": "Create a single tag by specific document Id",
-        "operationId": "createTagByDocumentId",
+        "summary": "Create a tag by doc ID",
+        "description": "Create a single tag by specific doc Id",
+        "operationId": "createTagByDocId",
         "requestBody": {
           "description": "Create a new gathering in the gathering",
           "content": {
@@ -531,7 +531,7 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       }
@@ -539,14 +539,14 @@
     "/api/tag/bydocid": {
       "get": {
         "tags": ["tag"],
-        "summary": "Find tag by document ID",
+        "summary": "Find tag by doc ID",
         "description": "Returns a single",
-        "operationId": "getTagByDocumentId",
+        "operationId": "getTagByDocId",
         "parameters": [
           {
-            "name": "documentId",
+            "name": "docId",
             "in": "query",
-            "description": "ID of document to return tag",
+            "description": "ID of doc to return tag",
             "required": true,
             "schema": {
               "type": "integer",
@@ -569,7 +569,7 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       }
@@ -578,13 +578,13 @@
       "get": {
         "tags": ["tag"],
         "summary": "Find tag by gahtering ID",
-        "description": "Returns a single document",
+        "description": "Returns a single doc",
         "operationId": "getTagByGatheringId",
         "parameters": [
           {
             "name": "gatheringId",
             "in": "query",
-            "description": "ID of document to return tag",
+            "description": "ID of doc to return tag",
             "required": true,
             "schema": {
               "type": "integer",
@@ -607,7 +607,7 @@
             "description": "Invalid ID supplied"
           },
           "404": {
-            "description": "Document not found"
+            "description": "Doc not found"
           }
         }
       }
@@ -702,7 +702,7 @@
           }
         }
       },
-      "Document": {
+      "Doc": {
         "required": [
           "title",
           "slug",
@@ -842,7 +842,7 @@
           }
         }
       },
-      "DocumentResponse": {
+      "DocResponse": {
         "required": [
           "title",
           "slug",

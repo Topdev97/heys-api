@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const document = sequelize.define('document', {
+  const doc = sequelize.define('doc', {
     title: {
       type: Sequelize.STRING,
       required: true,
@@ -62,14 +62,14 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
     },
 
-    // alter table document add column payments json after meta
+    // alter table doc add column payments json after meta
     payments: {
       type: Sequelize.JSON,
     },
 
     // comments: {
     //   collection: "comment",
-    //   via: "document",
+    //   via: "doc",
     // },
 
     allowNotifications: {
@@ -138,5 +138,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   })
 
-  return document
+  return doc
 }
