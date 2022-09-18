@@ -17,11 +17,6 @@ module.exports = (sequelize, Sequelize) => {
       maxLength: 1000,
     },
 
-    upvotes: {
-      type: Sequelize.INTEGER,
-      defaultsTo: 0,
-    },
-
     owners: {
       type: Sequelize.JSON,
       description: 'e.g {"emailAddress": "x", "nickname": "y"}',

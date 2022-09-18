@@ -6,22 +6,6 @@ module.exports = (sequelize, Sequelize) => {
       maxLength: 500,
     },
 
-    slug: {
-      type: Sequelize.STRING,
-      maxLength: 500,
-    },
-
-    url: {
-      type: Sequelize.STRING,
-      required: true,
-      maxLength: 500,
-    },
-
-    docUid: {
-      type: Sequelize.INTEGER,
-      defaultsTo: 0,
-    },
-
     description: {
       type: Sequelize.STRING,
       required: true,
@@ -34,6 +18,32 @@ module.exports = (sequelize, Sequelize) => {
       defaultsTo: '',
     },
 
+    approved: {
+      type: Sequelize.BOOLEAN,
+      defaultsTo: false,
+    },
+
+    slug: {
+      type: Sequelize.STRING,
+      maxLength: 500,
+    },
+
+    url: {
+      type: Sequelize.STRING,
+      required: true,
+      maxLength: 500,
+    },
+
+    docUid: {
+      type: Sequelize.STRING,
+      defaultsTo: 0,
+    },
+
+    docId: {
+      type: Sequelize.INTEGER,
+      defaultsTo: 0,
+    },
+
     upvotes: {
       type: Sequelize.INTEGER,
       defaultsTo: 0,
@@ -44,7 +54,7 @@ module.exports = (sequelize, Sequelize) => {
       defaultsTo: 0,
     },
 
-    readeds: {
+    reads: {
       type: Sequelize.INTEGER,
       defaultsTo: 0,
     },
@@ -62,24 +72,8 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.JSON,
     },
 
-    // alter table doc add column payments json after meta
     payments: {
       type: Sequelize.JSON,
-    },
-
-    // comments: {
-    //   collection: "comment",
-    //   via: "doc",
-    // },
-
-    allowNotifications: {
-      type: Sequelize.BOOLEAN,
-      defaultsTo: true,
-    },
-
-    hallOfFame: {
-      type: Sequelize.JSON,
-      description: 'e.g. {place: 3, month: "May", monthIdx: 4, year: 2020}',
     },
 
     contentDate: {
@@ -91,50 +85,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       defaultsTo: '',
       allowNull: true,
-    },
-
-    spacesArr: {
-      type: Sequelize.STRING,
-      defaultsTo: '[]',
-      description: 'e.g. ["1", "3"]',
-    },
-
-    archived: {
-      type: Sequelize.BOOLEAN,
-      defaultsTo: false,
-    },
-
-    ads: {
-      type: Sequelize.BOOLEAN,
-      defaultsTo: false,
-    },
-
-    allowForks: {
-      type: Sequelize.BOOLEAN,
-      defaultsTo: false,
-    },
-
-    forks: {
-      type: Sequelize.JSON,
-      description: 'e.g. { original: "", arr: [{ emailAddress: "", id: "" }] }',
-    },
-
-    dateNow: {
-      type: Sequelize.INTEGER,
-      autoCreatedAt: true,
-    },
-
-    approved: {
-      type: Sequelize.BOOLEAN,
-      defaultsTo: false,
-    },
-
-    hotScore: {
-      type: Sequelize.INTEGER,
-      // columnType: 'float GENERATED ALWAYS AS (LEAST((1 / ((dateNow - createdAt) / 1000 / 60 / 60 / 24)), 1) * (upvotes + 1))',
-      allowNull: true,
-      // columnType: 'float',
-      // allowNull: true
     },
   })
 

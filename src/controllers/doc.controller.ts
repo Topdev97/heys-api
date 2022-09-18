@@ -4,40 +4,38 @@ const Op = db.Sequelize.Op
 // Create and Save a new Doc
 async function create(req, res) {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.gatheringId) {
     res.status(400).send({
-      message: 'Content can not be empty!',
+      message: 'Gathering id needed',
     })
     return
   }
 
   // Create a Doc
   const doc = {
+    gatheringId: req.body.gatheringId,
+
     title: req.body.title,
+    description: req.body.description,
+    tags: req.body.tags,
+    approved: req.body.approved,
+    
     slug: req.body.slug,
-    url: req.body.description,
-    docUid: req.body.upvotes,
-    description: req.body.owners,
-    tags: req.body.customisation,
+    url: req.body.url,
+    docUid: req.body.docUid,
+    docId: req.body.docId,
+    
     upvotes: req.body.upvotes,
     views: req.body.views,
-    readeds: req.body.readeds,
+    reads: req.body.reads,
     clicks: req.body.clicks,
+    
     permissions: req.body.permissions,
     meta: req.body.meta,
     payments: req.body.payments,
-    allowNotifications: req.body.allowNotifications,
-    hallOfFame: req.body.hallOfFame,
+    
     contentDate: req.body.contentDate,
     content: req.body.content,
-    spacesArr: req.body.spacesArr,
-    archived: req.body.archived,
-    ads: req.body.ads,
-    allowForks: req.body.allowForks,
-    forks: req.body.forks,
-    dateNow: req.body.dateNow,
-    approved: req.body.approved,
-    hotScore: req.body.hotScore,
   }
 
   // Save Doc in the database
