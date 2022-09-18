@@ -19,21 +19,21 @@ async function create(req, res) {
     description: req.body.description,
     tags: req.body.tags,
     approved: req.body.approved,
-    
+
     slug: req.body.slug,
     url: req.body.url,
     docUid: req.body.docUid,
     docId: req.body.docId,
-    
+
     upvotes: req.body.upvotes,
     views: req.body.views,
     reads: req.body.reads,
     clicks: req.body.clicks,
-    
+
     permissions: req.body.permissions,
     meta: req.body.meta,
     payments: req.body.payments,
-    
+
     contentDate: req.body.contentDate,
     content: req.body.content,
   }

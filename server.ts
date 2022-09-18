@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 import bearerToken from 'express-bearer-token'
 import errorMiddleware from './src/middlewares/error.middleware'
 import swaggerUi from 'swagger-ui-express'
-const { Umzug, SequelizeStorage } = require('umzug');
+const { Umzug, SequelizeStorage } = require('umzug')
 const swaggerDocument = require('./swagger.json')
 import 'dotenv/config'
 
@@ -38,7 +38,6 @@ app.use(
   })
 )
 
-
 import db from './src/db'
 db.sequelize
   // .sync({ force: true })
@@ -53,10 +52,10 @@ db.sequelize
       storage: new SequelizeStorage({ sequelize: db.sequelize }),
       storageOptions: {
         sequelize: db.sequelize,
-        modelName: 'SequelizeData'
+        modelName: 'SequelizeData',
       },
-      logger: console
-    });
+      logger: console,
+    })
     seeder.up()
   })
   .catch(err => {

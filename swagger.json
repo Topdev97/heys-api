@@ -693,13 +693,7 @@
         }
       },
       "Doc": {
-        "required": [
-          "gatheringId",
-          "slug",
-          "url",
-          "docUid",
-          "docId"
-        ],
+        "required": ["gatheringId", "slug", "url", "docUid", "docId"],
         "type": "object",
         "properties": {
           "gatheringId": {
@@ -723,7 +717,6 @@
             "type": "boolean",
             "example": false
           },
-
 
           "slug": {
             "type": "string",
@@ -785,13 +778,7 @@
         }
       },
       "DocResponse": {
-        "required": [
-          "gatheringId",
-          "slug",
-          "url",
-          "docUid",
-          "docId"
-        ],
+        "required": ["gatheringId", "slug", "url", "docUid", "docId"],
         "type": "object",
         "properties": {
           "gatheringId": {
@@ -815,7 +802,6 @@
             "type": "boolean",
             "example": false
           },
-
 
           "slug": {
             "type": "string",

@@ -1,8 +1,7 @@
-'use strict';
-
+'use strict'
 
 module.exports = {
-  async up (umzugContext) {
+  async up(umzugContext) {
     /**
      * Add seed commands here.
      *
@@ -11,7 +10,7 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
+     */
     const db = umzugContext.context
     const Gathering = db.gathering
     // Save Gathering in the database
@@ -20,22 +19,22 @@ module.exports = {
       slug: 'blockchain-gathering',
       description: 'The best public Google docs about crypto',
       owners: {
-        "emailAddress": "me@example.com",
-        "nickname": "y"
+        emailAddress: 'me@example.com',
+        nickname: 'y',
       },
       customisation: {
-        "bannerColor": "green",
-        "year": 2020
-      }
+        bannerColor: 'green',
+        year: 2020,
+      },
     })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
-};
+  },
+}
