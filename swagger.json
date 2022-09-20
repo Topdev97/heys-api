@@ -728,7 +728,7 @@
           },
           "docUid": {
             "type": "string",
-            "example": "sgwgg-fqwrsf-asfag-wqrwg"
+            "example": "4bc49337-97c5-4ae9-85f3-5b7f6b6186ce"
           },
           "docId": {
             "type": "integer",
@@ -813,7 +813,7 @@
           },
           "docUid": {
             "type": "string",
-            "example": "sgwgg-fqwrsf-asfag-wqrwg"
+            "example": "4bc49337-97c5-4ae9-85f3-5b7f6b6186ce"
           },
           "docId": {
             "type": "integer",
