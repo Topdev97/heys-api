@@ -45,7 +45,7 @@ module.exports = (sequelize, Sequelize) => {
 
     docType: {
       type: Sequelize.INTEGER,
-      required: true
+      required: true,
     },
 
     upvotes: {
