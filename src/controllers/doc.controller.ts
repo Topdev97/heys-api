@@ -12,35 +12,42 @@ async function create(req, res) {
   }
 
   // Create a Doc
-  const doc = {
+  const docData = {
     gatheringId: req.body.gatheringId,
 
-    title: req.body.title,
+    url: req.body.url,
+    docId: req.body.docId,
     description: req.body.description,
     tags: req.body.tags,
-    approved: req.body.approved,
-
-    slug: req.body.slug,
-    url: req.body.url,
-    docUid: req.body.docUid,
-    docId: req.body.docId,
-    docType: req.body.docType,
-
-    upvotes: req.body.upvotes,
-    views: req.body.views,
-    reads: req.body.reads,
-    clicks: req.body.clicks,
-
-    permissions: req.body.permissions,
-    meta: req.body.meta,
-    payments: req.body.payments,
-
-    contentDate: req.body.contentDate,
-    content: req.body.content,
   }
 
+
+  // TODO: calculate
+  // title: req.body.title,
+  // slug: req.body.slug,
+  // docUid: req.body.docUid,
+  // docType: req.body.docType,
+
+  // permissions: req.body.permissions,
+  // meta: req.body.meta,
+  // payments: req.body.payments,
+
+  // contentDate: req.body.contentDate,
+  // content: req.body.content,
+  // newDocObj.docUid = regex(newUrl)
+
+  // if (newUrl.includes('/document/')) newDocObj.docType = 0
+  // if (newUrl.includes('/spreadsheets/')) newDocObj.docType = 1
+  // if (newUrl.includes('/presentation/')) newDocObj.docType = 2
+
   // Save Doc in the database
-  await Doc.create(doc)
+  await Doc.create({
+    title: 'test',
+    slug: 'test',
+    docUid: 'test',
+    docType: 0,
+    ...docData
+  })
     .then(data => {
       res.send(data)
     })
