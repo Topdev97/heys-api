@@ -693,7 +693,7 @@
         }
       },
       "Doc": {
-        "required": ["gatheringId", "slug", "url", "docUid", "docId"],
+        "required": ["gatheringId", "slug", "url", "docUid", "docId", "docType"],
         "type": "object",
         "properties": {
           "gatheringId": {
@@ -734,6 +734,11 @@
             "type": "integer",
             "format": "int64",
             "example": 1
+          },
+          "docType": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
           },
 
           "upvotes": {
@@ -778,7 +783,7 @@
         }
       },
       "DocResponse": {
-        "required": ["gatheringId", "slug", "url", "docUid", "docId"],
+        "required": ["gatheringId", "slug", "url", "docUid", "docId", "docType"],
         "type": "object",
         "properties": {
           "gatheringId": {
@@ -819,6 +824,11 @@
             "type": "integer",
             "format": "int64",
             "example": 1
+          },
+          "docType": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
           },
 
           "upvotes": {

@@ -8,6 +8,7 @@ module.exports = (sequelize, Sequelize) => {
 
     slug: {
       type: Sequelize.STRING,
+      required: true,
       maxLength: 500,
     },
 

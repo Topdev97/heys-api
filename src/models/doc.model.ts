@@ -13,9 +13,8 @@ module.exports = (sequelize, Sequelize) => {
     },
 
     tags: {
-      type: Sequelize.STRING,
-      maxLength: 500,
-      defaultsTo: '',
+      type: Sequelize.ARRAY(Sequelize.STRING),
+      defaultsTo: [],
     },
 
     approved: {
@@ -36,12 +35,12 @@ module.exports = (sequelize, Sequelize) => {
 
     docUid: {
       type: Sequelize.STRING,
-      defaultsTo: 0,
+      required: true
     },
 
     docId: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      required: true
     },
 
     upvotes: {

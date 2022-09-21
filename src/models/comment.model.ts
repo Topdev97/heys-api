@@ -1,17 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
   const comment = sequelize.define('comment', {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-
     text: {
       type: Sequelize.STRING,
+      required: true
     },
 
     nickname: {
       type: Sequelize.STRING,
+      defaultsTo: 'Annonymous',
       maxLength: 100,
     },
 
@@ -30,10 +26,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER,
       defaultsTo: -1,
     },
-
-    // doc: {
-    //   model: "doc",
-    // },
   })
 
   return comment

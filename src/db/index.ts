@@ -22,6 +22,7 @@ db.doc.belongsTo(db.gathering)
 db.doc.hasMany(db.comment)
 db.comment.belongsTo(db.doc)
 // many-to-many
+/*
 db.doc.belongsToMany(db.tag, {
   through: 'doc_tag',
   as: 'tag',
@@ -32,5 +33,6 @@ db.tag.belongsToMany(db.doc, {
   as: 'docs',
   foreignKey: 'tag_id',
 })
+*/
 
 export default db

@@ -4,12 +4,6 @@ module.exports = {
   async up(umzugContext) {
     /**
      * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
      */
     const db = umzugContext.context
     const Gathering = db.gathering
@@ -32,9 +26,6 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
      */
   },
 }

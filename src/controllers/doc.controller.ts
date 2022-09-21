@@ -24,6 +24,7 @@ async function create(req, res) {
     url: req.body.url,
     docUid: req.body.docUid,
     docId: req.body.docId,
+    docType: req.body.docType,
 
     upvotes: req.body.upvotes,
     views: req.body.views,
