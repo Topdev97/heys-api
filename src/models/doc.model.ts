@@ -35,10 +35,15 @@ module.exports = (sequelize, Sequelize) => {
 
     docUid: {
       type: Sequelize.STRING,
-      required: true
+      required: true,
     },
 
     docId: {
+      type: Sequelize.INTEGER,
+      required: true,
+    },
+
+    docType: {
       type: Sequelize.INTEGER,
       required: true
     },

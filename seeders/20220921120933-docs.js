@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 module.exports = {
-  async up (umzugContext) {
+  async up(umzugContext) {
     /**
      * Add seed commands here.
-    */
+     */
     const db = umzugContext.context
     const Doc = db.doc
     await Doc.create({
@@ -17,7 +17,7 @@ module.exports = {
       docUid: '1CqPAGTcVnX5e01_5TaoUYnMPrclTvncPuESk8wo4pNQ',
       docId: 0,
       docType: 1,
-      gatheringId: 1
+      gatheringId: 1,
     })
     await Doc.create({
       title: 'Sample Doc B',
@@ -29,24 +29,24 @@ module.exports = {
       docUid: '11OWpLcDsZP59U7uBHylBGnuluoCN0aQECIQLzzcTcVE',
       docId: 1,
       docType: 0,
-      gatheringId: 1
+      gatheringId: 1,
     })
     await Doc.create({
       title: 'Sample Doc C',
-      description: 'A sample doc which hasn\'t been approved yet',
+      description: "A sample doc which hasn't been approved yet",
       tags: ['tag-A'],
       slug: 'sample-doc-c',
       url: 'https://docs.google.com/document/d/1gTPIQMLVcv_OQ8flblVTCWWfrGadQNxZXNZTvDh6iKA/edit',
       docUid: '1gTPIQMLVcv_OQ8flblVTCWWfrGadQNxZXNZTvDh6iKA',
       docId: 2,
       docType: 0,
-      gatheringId: 1
+      gatheringId: 1,
     })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      */
-  }
-};
+  },
+}

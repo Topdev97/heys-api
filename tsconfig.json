@@ -6,6 +6,7 @@
     "rootDir": "./",
     "outDir": "./build",
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "strict": false
   },
   "include": ["*.ts", "./**/*.ts", "./**/*.json"],

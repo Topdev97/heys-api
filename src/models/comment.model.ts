@@ -2,7 +2,7 @@ module.exports = (sequelize, Sequelize) => {
   const comment = sequelize.define('comment', {
     text: {
       type: Sequelize.STRING,
-      required: true
+      required: true,
     },
 
     nickname: {

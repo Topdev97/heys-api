@@ -1,12 +1,12 @@
 import express from 'express'
 // import morgan from "morgan"
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
+import morgan from 'morgan'
+import bodyParser from 'body-parser'
 import bearerToken from 'express-bearer-token'
 import errorMiddleware from './src/middlewares/error.middleware'
 import swaggerUi from 'swagger-ui-express'
-const { Umzug, SequelizeStorage } = require('umzug')
-const swaggerDocument = require('./swagger.json')
+import { Umzug, SequelizeStorage } from 'umzug'
+import swaggerDocument from './swagger.json'
 import 'dotenv/config'
 
 const app = express()
@@ -50,10 +50,6 @@ db.sequelize
       migrations: { glob: 'seeders/*.js' },
       context: db,
       storage: new SequelizeStorage({ sequelize: db.sequelize }),
-      storageOptions: {
-        sequelize: db.sequelize,
-        modelName: 'SequelizeData',
-      },
       logger: console,
     })
     seeder.up()

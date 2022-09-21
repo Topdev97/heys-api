@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 module.exports = {
-  async up (umzugContext) {
+  async up(umzugContext) {
     /**
      * Add seed commands here.
-    */
+     */
     const db = umzugContext.context
     const Tag = db.tag
     await Tag.create({
@@ -13,17 +13,17 @@ module.exports = {
     })
     await Tag.create({
       title: 'tag-B',
-      count: 2
+      count: 2,
     })
     await Tag.create({
       title: 'tag-C',
-      count: 1
+      count: 1,
     })
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      */
-  }
-};
+  },
+}
