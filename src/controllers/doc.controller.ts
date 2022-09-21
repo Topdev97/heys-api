@@ -52,7 +52,7 @@ async function create(req, res) {
 }
 // Retrieve all Doc from the database.
 async function findAll(req, res) {
-  const gatheringId = req.query.gatheringId
+  const gatheringId = req.params.gatheringId
   await Doc.findAll({
     order: [['updatedAt', 'DESC']],
     where: { gatheringId },

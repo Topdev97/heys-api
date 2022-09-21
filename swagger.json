@@ -80,7 +80,7 @@
         }
       }
     },
-    "/api/gathering/{gatheringId}": {
+    "/api/doc/gathering/{gatheringId}": {
       "get": {
         "tags": ["doc"],
         "summary": "Find docs from a gathering",
