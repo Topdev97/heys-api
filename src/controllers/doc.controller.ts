@@ -21,7 +21,6 @@ async function create(req, res) {
     tags: req.body.tags,
   }
 
-
   // TODO: calculate
   // title: req.body.title,
   // slug: req.body.slug,
@@ -46,7 +45,7 @@ async function create(req, res) {
     slug: 'test',
     docUid: 'test',
     docType: 0,
-    ...docData
+    ...docData,
   })
     .then(data => {
       res.send(data)
