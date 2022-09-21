@@ -53,10 +53,9 @@ async function create(req, res) {
 // Retrieve all Doc from the database.
 async function findAll(req, res) {
   const gatheringId = req.query.gatheringId
-  const condition = gatheringId ? { gatheringId: `${gatheringId}` } : null
   await Doc.findAll({
     order: [['updatedAt', 'DESC']],
-    where: condition,
+    where: { gatheringId },
     limit: 10,
   })
     .then(data => {
@@ -93,7 +92,7 @@ async function update(req, res) {
   const id = req.params.id
 
   await Doc.update(req.body, {
-    where: { id: id },
+    where: { id },
   })
     .then(num => {
       if (num == 1) {

@@ -4,14 +4,14 @@ module.exports = app => {
   // Create a new Doc
   router.post('/', doc.create)
   // Retrieve all Docs
-  router.get('/', doc.findAll)
+  router.get('/gathering/:gatheringId', doc.findAll)
   // Retrieve a single Doc with id
-  router.get('/:id', doc.findOne)
+  router.get('/doc/:id', doc.findOne)
   // Update a Doc with id
-  router.put('/:id', doc.update)
+  router.put('/doc/:id', doc.update)
   // Delete a Doc with id
-  router.delete('/:id', doc.deleteOne)
+  // router.delete('/:id', doc.deleteOne)
   // Delete all Doc
-  router.delete('/', doc.deleteAll)
+  // router.delete('/', doc.deleteAll)
   app.use('/api/doc', router)
 }

@@ -21,38 +21,6 @@
   ],
   "paths": {
     "/api/gathering": {
-      "post": {
-        "tags": ["gathering"],
-        "summary": "Add a new gathering",
-        "description": "Add a new gathering to the gathering",
-        "operationId": "addGathering",
-        "requestBody": {
-          "description": "Create a new gathering in the gathering",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Gathering"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatheringResponse"
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        }
-      },
       "get": {
         "tags": ["gathering"],
         "summary": "Get latest 10 gathering",
@@ -74,129 +42,6 @@
           },
           "400": {
             "description": "Invalid status value"
-          }
-        }
-      }
-    },
-    "/api/gathering/{gatheringId}": {
-      "get": {
-        "tags": ["gathering"],
-        "summary": "Find gathering by ID",
-        "description": "Returns a single gathering",
-        "operationId": "getGatheringById",
-        "parameters": [
-          {
-            "name": "gatheringId",
-            "in": "path",
-            "description": "ID of gathering to return",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GatheringResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Gathering not found"
-          }
-        }
-      },
-      "put": {
-        "tags": ["gathering"],
-        "summary": "Update an existing gathering",
-        "description": "Update an existing gathering by Id",
-        "operationId": "updateGathering",
-        "parameters": [
-          {
-            "name": "gatheringId",
-            "in": "path",
-            "description": "ID of gathering to return",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "requestBody": {
-          "description": "Update an existent gathering",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Gathering"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Gathering was updated successfully."
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Gathering not found"
-          },
-          "405": {
-            "description": "Validation exception"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["gathering"],
-        "summary": "Deletes a gathering",
-        "description": "delete a gathering",
-        "operationId": "deleteGatheringById",
-        "parameters": [
-          {
-            "name": "gatheringId",
-            "in": "path",
-            "description": "Gathering id to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Gathering were deleted successfully"
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Gathering not found"
-          }
-        }
-      }
-    },
-    "/gathering": {
-      "delete": {
-        "tags": ["gathering"],
-        "summary": "Deletes all gathering",
-        "description": "delete all gathering",
-        "operationId": "deleteGathering",
-        "responses": {
-          "200": {
-            "description": "Gathering were deleted successfully"
           }
         }
       }
@@ -233,44 +78,44 @@
             "description": "Invalid input"
           }
         }
-      },
+      }
+    },
+    "/api/gathering/{gatheringId}": {
       "get": {
         "tags": ["doc"],
-        "summary": "Get latest 10 doc",
-        "description": "No required request body",
-        "operationId": "getDoc",
+        "summary": "Find docs from a gathering",
+        "description": "Returns a docs for a gathering",
+        "operationId": "getDocsByGatheringId",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "Id of gathering where the docs are",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/DocResponse"
-                  }
+                  "$ref": "#/components/schemas/DocResponse"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid status value"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["doc"],
-        "summary": "Delete all doc",
-        "description": "delete all doc",
-        "operationId": "deleteDoc",
-        "responses": {
-          "200": {
-            "description": "Gathering were deleted successfully"
+            "description": "Invalid gatheringId supplied"
           }
         }
       }
     },
-    "/api/doc/{docId}": {
+    "/api/doc/{id}": {
       "get": {
         "tags": ["doc"],
         "summary": "Find doc by ID",
@@ -278,7 +123,7 @@
         "operationId": "getDocById",
         "parameters": [
           {
-            "name": "docId",
+            "name": "id",
             "in": "path",
             "description": "ID of doc to return",
             "required": true,
@@ -314,7 +159,7 @@
         "operationId": "updateDoc",
         "parameters": [
           {
-            "name": "docId",
+            "name": "id",
             "in": "path",
             "description": "ID of doc to update",
             "required": true,
@@ -347,35 +192,6 @@
           },
           "405": {
             "description": "Validation exception"
-          }
-        }
-      },
-      "delete": {
-        "tags": ["doc"],
-        "summary": "Delete a doc",
-        "description": "delete a doc",
-        "operationId": "deleteDocById",
-        "parameters": [
-          {
-            "name": "docId",
-            "in": "path",
-            "description": "doc id to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Doc were deleted successfully"
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Doc not found"
           }
         }
       }
@@ -412,28 +228,19 @@
             "description": "Invalid input"
           }
         }
-      },
-      "delete": {
-        "tags": ["comment"],
-        "summary": "Delete all comment",
-        "description": "delete all comment",
-        "operationId": "deleteComment",
-        "responses": {
-          "200": {
-            "description": "Doc were deleted successfully"
-          }
-        }
-      },
+      }
+    },
+    "/api/comment/doc/{id}": {
       "get": {
         "tags": ["comment"],
-        "summary": "Find comment by specific doc Id",
-        "description": "Returns a single comment",
-        "operationId": "getCommentByDocId",
+        "summary": "Get comments for a specific doc",
+        "description": "Returns a list of comment",
+        "operationId": "getCommentsForDoc",
         "parameters": [
           {
-            "name": "docId",
-            "in": "query",
-            "description": "ID of doc to return",
+            "name": "id",
+            "in": "path",
+            "description": "ID of doc to get comments for",
             "required": true,
             "schema": {
               "type": "integer",
@@ -447,16 +254,13 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CommentResponse"
+                  "$ref": "#/components/schemas/Comment"
                 }
               }
             }
           },
           "400": {
             "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Doc not found"
           }
         }
       }
@@ -499,92 +303,17 @@
         }
       }
     },
-    "/api/tag": {
-      "post": {
-        "tags": ["tag"],
-        "summary": "Create a tag by doc ID",
-        "description": "Create a single tag by specific doc Id",
-        "operationId": "createTagByDocId",
-        "requestBody": {
-          "description": "Create a new gathering in the gathering",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Tag"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tag"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Doc not found"
-          }
-        }
-      }
-    },
-    "/api/tag/bydocid": {
+    "/api/tag/gathering/{gatheringId}": {
       "get": {
         "tags": ["tag"],
-        "summary": "Find tag by doc ID",
-        "description": "Returns a single",
-        "operationId": "getTagByDocId",
-        "parameters": [
-          {
-            "name": "docId",
-            "in": "query",
-            "description": "ID of doc to return tag",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Tag"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Doc not found"
-          }
-        }
-      }
-    },
-    "/api/tag/bygatherid": {
-      "get": {
-        "tags": ["tag"],
-        "summary": "Find tag by gahtering ID",
-        "description": "Returns a single doc",
+        "summary": "Find tags for a gathering",
+        "description": "Returns a list of tags",
         "operationId": "getTagByGatheringId",
         "parameters": [
           {
             "name": "gatheringId",
-            "in": "query",
-            "description": "ID of doc to return tag",
+            "in": "path",
+            "description": "ID of gathering to return tag",
             "required": true,
             "schema": {
               "type": "integer",

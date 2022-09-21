@@ -16,9 +16,13 @@ db.doc = require('../models/doc.model.ts')(sequelize, Sequelize)
 db.comment = require('../models/comment.model.ts')(sequelize, Sequelize)
 db.tag = require('../models/tag.model.ts')(sequelize, Sequelize)
 
+//one-to-many
 db.gathering.hasMany(db.doc)
 db.doc.belongsTo(db.gathering)
-//one-to-many
+
+db.gathering.hasMany(db.tag)
+db.tag.belongsTo(db.gathering)
+
 db.doc.hasMany(db.comment)
 db.comment.belongsTo(db.doc)
 // many-to-many
