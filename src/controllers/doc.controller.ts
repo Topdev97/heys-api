@@ -60,7 +60,7 @@ async function findAll(req, res) {
   const gatheringId = req.params.gatheringId
   await Doc.findAll({
     order: [['updatedAt', 'DESC']],
-    where: { gatheringId },
+    where: { gatheringId, approved: true },
     limit: 10,
   })
     .then(data => {
