@@ -8,7 +8,7 @@ module.exports = (sequelize, Sequelize) => {
 
     count: {
       type: Sequelize.INTEGER,
-      defaultsTo: 1,
+      defaultValue: 1,
     },
   })
 

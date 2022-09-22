@@ -14,12 +14,12 @@ module.exports = (sequelize, Sequelize) => {
 
     tags: {
       type: Sequelize.ARRAY(Sequelize.STRING),
-      defaultsTo: [],
+      defaultValue: [],
     },
 
     approved: {
       type: Sequelize.BOOLEAN,
-      defaultsTo: false,
+      defaultValue: false,
     },
 
     slug: {
@@ -50,22 +50,22 @@ module.exports = (sequelize, Sequelize) => {
 
     upvotes: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      defaultValue: 0,
     },
 
     views: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      defaultValue: 0,
     },
 
     reads: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      defaultValue: 0,
     },
 
     clicks: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      defaultValue: 0,
     },
 
     permissions: {
@@ -81,13 +81,13 @@ module.exports = (sequelize, Sequelize) => {
     },
 
     contentDate: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.DATE,
       allowNull: true,
     },
 
     content: {
       type: Sequelize.STRING,
-      defaultsTo: '',
+      defaultValue: '',
       allowNull: true,
     },
   })

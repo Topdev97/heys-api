@@ -17,34 +17,33 @@ async function create(req, res) {
 
     url: req.body.url,
     docId: req.body.docId,
+    docUid: req.body.docUid,
+    docType: req.body.docType,
+
     description: req.body.description,
     tags: req.body.tags,
   }
 
-  // TODO: calculate
-  // title: req.body.title,
-  // slug: req.body.slug,
-  // docUid: req.body.docUid,
-  // docType: req.body.docType,
+  const calculatedDocData = {} as any
 
-  // permissions: req.body.permissions,
-  // meta: req.body.meta,
-  // payments: req.body.payments,
+  calculatedDocData.title = `New doc with docId ${req.body.docId}`
+  calculatedDocData.slug = `new-doc-docid-${req.body.docId}`
 
-  // contentDate: req.body.contentDate,
-  // content: req.body.content,
-  // newDocObj.docUid = regex(newUrl)
+  calculatedDocData.permissions = {}
+  calculatedDocData.meta = {}
+  calculatedDocData.payments = {}
 
-  // if (newUrl.includes('/document/')) newDocObj.docType = 0
-  // if (newUrl.includes('/spreadsheets/')) newDocObj.docType = 1
-  // if (newUrl.includes('/presentation/')) newDocObj.docType = 2
+  calculatedDocData.content = 'This is the content of the doc'
+  calculatedDocData.contentDate = Date.now()
+
+  console.log({
+    ...calculatedDocData,
+    ...docData,
+  })
 
   // Save Doc in the database
   await Doc.create({
-    title: 'test',
-    slug: 'test',
-    docUid: 'test',
-    docType: 0,
+    ...calculatedDocData,
     ...docData,
   })
     .then(data => {
