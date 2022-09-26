@@ -1,13 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
   const doc = sequelize.define('doc', {
     title: {
-      type: Sequelize.STRING,
+      type: Sequelize.TSVECTOR,
       required: true,
       maxLength: 500,
     },
 
     description: {
-      type: Sequelize.STRING,
+      type: Sequelize.TSVECTOR,
       required: true,
       maxLength: 1000,
     },

@@ -4,7 +4,7 @@ module.exports = app => {
   // Create a new Doc
   router.post('/', doc.create)
   // Retrieve all Docs
-  router.get('/gathering/:gatheringId', doc.findAll)
+  router.post('/gathering/:gatheringId', doc.filter)
   // Retrieve a single Doc with id
   router.get('/doc/:id', doc.findOne)
   // Update a Doc with id

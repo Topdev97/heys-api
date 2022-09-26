@@ -1,5 +1,6 @@
 import db from '../db'
 const Doc = db.doc
+const Sequelize = db.Sequelize
 const Op = db.Sequelize.Op
 // Create and Save a new Doc
 async function create(req, res) {
@@ -157,6 +158,48 @@ async function deleteAll(req, res) {
     })
 }
 
+// Filter documents by search query
+async function filter(req, res) {
+  const gatheringId = req.params.gatheringId
+  try {
+    if(req.body.search) {
+      const data = await Doc.findAll({
+        order: [['updatedAt', 'DESC']],
+        where: { 
+          [Op.and]: [
+            { gatheringId: gatheringId }, 
+            {[Op.or] : [
+              {
+                title: {
+                  [Op.match]: Sequelize.fn('to_tsquery', req.body.search)
+                },
+              },
+              {
+                description: {
+                  [Op.match]: Sequelize.fn('to_tsquery', req.body.search)
+                },
+              }
+            ]}
+          ], 
+        },
+        limit: 10,
+      })
+      res.send(data)
+    } else {
+      const data = await Doc.findAll({
+        order: [['updatedAt', 'DESC']],
+        where: { gatheringId: gatheringId },
+        limit: 10,
+      })
+      res.send(data)
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || 'Some error occurred while retrieving Doc.',
+    })
+  }
+}
+
 module.exports = {
   create,
   findAll,
@@ -164,4 +207,5 @@ module.exports = {
   update,
   deleteOne,
   deleteAll,
+  filter,
 }
