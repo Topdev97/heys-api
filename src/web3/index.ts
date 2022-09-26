@@ -18,11 +18,9 @@ export function startListeners() {
   const gatheringContract = getGatheringContract()
 
   gatheringContract.on('DocApproved', async _docId => {
-    await Doc.update(
-      { approved: true },
-      {
-        where: { docId: Number(_docId) },
-      }
-    ).catch(err => console.log(err))
+    console.log(`Approving doc ${Number(_docId)}`)
+    const docToApprove = await Doc.findOne({ where: { docId: Number(_docId) } })
+    await docToApprove.update({ approved: true })
+    await docToApprove.save()
   })
 }
