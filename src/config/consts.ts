@@ -1,5 +1,3 @@
-
-
 export const DEPLOYED_NETWORK: number = process.env.DEPLOYED_NETWORK
   ? Number(process.env.DEPLOYED_NETWORK)
   : 80001

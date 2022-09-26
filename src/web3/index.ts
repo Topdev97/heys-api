@@ -1,5 +1,5 @@
 import { ContractInterface, ethers } from 'ethers'
-import { RPC_URL, GATHERING_ADDRESSES } from "../config/consts"
+import { RPC_URL, GATHERING_ADDRESSES } from '../config/consts'
 import gatheringAbi from './abis/GatheringAbi.json'
 import db from '../db'
 const Doc = db.doc
@@ -17,7 +17,7 @@ export function getGatheringContract() {
 export function startListeners() {
   const gatheringContract = getGatheringContract()
 
-  gatheringContract.on('DocApproved', async (_docId) => {
+  gatheringContract.on('DocApproved', async _docId => {
     await Doc.update(
       { approved: true },
       {
