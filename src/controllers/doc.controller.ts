@@ -162,25 +162,27 @@ async function deleteAll(req, res) {
 async function filter(req, res) {
   const gatheringId = req.params.gatheringId
   try {
-    if(req.body.search) {
+    if (req.body.search) {
       const data = await Doc.findAll({
         order: [['updatedAt', 'DESC']],
-        where: { 
+        where: {
           [Op.and]: [
-            { gatheringId: gatheringId }, 
-            {[Op.or] : [
-              {
-                title: {
-                  [Op.match]: Sequelize.fn('to_tsquery', req.body.search)
+            { gatheringId: gatheringId },
+            {
+              [Op.or]: [
+                {
+                  title: {
+                    [Op.match]: Sequelize.fn('to_tsquery', req.body.search),
+                  },
                 },
-              },
-              {
-                description: {
-                  [Op.match]: Sequelize.fn('to_tsquery', req.body.search)
+                {
+                  description: {
+                    [Op.match]: Sequelize.fn('to_tsquery', req.body.search),
+                  },
                 },
-              }
-            ]}
-          ], 
+              ],
+            },
+          ],
         },
         limit: 10,
       })
