@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
 
     nickname: {
       type: Sequelize.STRING,
-      defaultsTo: 'Annonymous',
+      defaultValue: 'Annonymous',
       maxLength: 100,
     },
 
@@ -19,12 +19,12 @@ module.exports = (sequelize, Sequelize) => {
 
     upvotes: {
       type: Sequelize.INTEGER,
-      defaultsTo: 0,
+      defaultValue: 0,
     },
 
     replyTo: {
       type: Sequelize.INTEGER,
-      defaultsTo: -1,
+      defaultValue: -1,
     },
   })
 
