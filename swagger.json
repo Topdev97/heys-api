@@ -81,7 +81,7 @@
       }
     },
     "/api/doc/gathering/{gatheringId}": {
-      "get": {
+      "post": {
         "tags": ["doc"],
         "summary": "Find docs from a gathering",
         "description": "Returns a docs for a gathering",
@@ -98,6 +98,17 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Filter",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Filter"
+              }
+            }
+          },
+          "required": false
+        },
         "responses": {
           "200": {
             "description": "successful operation",
@@ -676,6 +687,34 @@
             "example": "important"
           },
           "count": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      },
+      "Filter": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "search": {
+            "type": "string",
+            "example": "cats"
+          },
+          "tags": {
+            "type": "string",
+            "example": ["tag-A"]
+          },
+          "sort": {
+            "type": "string",
+            "example": "Hot"
+          },
+          "type": {
             "type": "integer",
             "format": "int64",
             "example": 1

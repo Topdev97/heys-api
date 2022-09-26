@@ -1,3 +1,4 @@
+import { serialize } from 'v8'
 import db from '../db'
 const Doc = db.doc
 const Op = db.Sequelize.Op
@@ -55,9 +56,39 @@ async function create(req, res) {
 // Retrieve all Doc from the database.
 async function findAll(req, res) {
   const gatheringId = req.params.gatheringId
+
+  let where = {
+    gatheringId,
+    approved: true,
+  } as any
+
+  let searchWhere
+  if (req.body.search) {
+    searchWhere = {
+      [Op.or]: [
+        { title: { [Op.iLike]: `%${req.body.search}%` } },
+        { description: { [Op.iLike]: `%${req.body.search}%` } },
+      ],
+    }
+  }
+
+  let tagsWhere
+  if (req.body.tags) {
+    console.log(req.body.tags)
+    tagsWhere = {
+      tags: { [Op.contains]: req.body.tags },
+    }
+  }
+
+  if (searchWhere || tagsWhere) {
+    where = { [Op.and]: [where] }
+    if (searchWhere) where[Op.and].push(searchWhere)
+    if (tagsWhere) where[Op.and].push(tagsWhere)
+  }
+
   await Doc.findAll({
-    order: [['updatedAt', 'DESC']],
-    where: { gatheringId, approved: true },
+    order: [['createdAt', 'DESC']],
+    where,
     limit: 10,
   })
     .then(data => {
