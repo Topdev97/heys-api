@@ -1,6 +1,7 @@
 import db from '../db'
 const Doc = db.doc
 const Op = db.Sequelize.Op
+
 // Create and Save a new Doc
 async function create(req, res) {
   // Validate request
@@ -36,11 +37,6 @@ async function create(req, res) {
   calculatedDocData.content = 'This is the content of the doc'
   calculatedDocData.contentDate = Date.now()
 
-  console.log({
-    ...calculatedDocData,
-    ...docData,
-  })
-
   // Save Doc in the database
   await Doc.create({
     ...calculatedDocData,
@@ -55,6 +51,7 @@ async function create(req, res) {
       })
     })
 }
+
 // Retrieve all Doc from the database.
 async function findAll(req, res) {
   const gatheringId = req.params.gatheringId
@@ -72,6 +69,7 @@ async function findAll(req, res) {
       })
     })
 }
+
 // Find a single Doc with an id
 async function findOne(req, res) {
   const id = req.params.id
@@ -92,6 +90,7 @@ async function findOne(req, res) {
       })
     })
 }
+
 // Update a Doc by the id in the request
 async function update(req, res) {
   const id = req.params.id
@@ -116,6 +115,7 @@ async function update(req, res) {
       })
     })
 }
+
 // Delete a Doc with the specified id in the request
 async function deleteOne(req, res) {
   const id = req.params.id
@@ -140,6 +140,7 @@ async function deleteOne(req, res) {
       })
     })
 }
+
 // Delete all Doc from the database.
 async function deleteAll(req, res) {
   await Doc.destroy({
