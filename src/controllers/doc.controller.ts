@@ -95,7 +95,34 @@ async function findAll(req, res) {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving Doc.',
+        message: err.message || 'Some error occurred while retrieving Docs.',
+      })
+    })
+}
+
+// Retrieve Docs for an array of docIds.
+async function findByDocId(req, res) {
+  const gatheringId = req.params.gatheringId
+  const docIds = req.body.docIds.slice(0, 20)
+
+  let where = {
+    gatheringId,
+    [Op.or]: docIds.map(docId => ({
+      docId,
+    })),
+  } as any
+
+  await Doc.findAll({
+    order: [['createdAt', 'DESC']],
+    where,
+    limit: 20,
+  })
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving Docs.',
       })
     })
 }
@@ -190,6 +217,7 @@ async function deleteAll(req, res) {
 module.exports = {
   create,
   findAll,
+  findByDocId,
   findOne,
   update,
   deleteOne,

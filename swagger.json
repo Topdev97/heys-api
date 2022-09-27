@@ -126,6 +126,52 @@
         }
       }
     },
+    "/api/doc/gathering/{gatheringId}/docIds": {
+      "post": {
+        "tags": ["doc"],
+        "summary": "Find docs from a gathering by docId array",
+        "description": "Returns docs for a gathering",
+        "operationId": "getDocsByDocIds",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "Id of gathering where the docs are",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "DocIdBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocIdBody"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid gatheringId supplied"
+          }
+        }
+      }
+    },
     "/api/doc/{id}": {
       "get": {
         "tags": ["doc"],
@@ -674,6 +720,16 @@
             "type": "integer",
             "format": "int64",
             "example": 1
+          }
+        }
+      },
+      "DocIdBody": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "docIds": {
+            "type": "string",
+            "example": [1]
           }
         }
       }
