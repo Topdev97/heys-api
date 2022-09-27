@@ -74,7 +74,6 @@ async function findAll(req, res) {
 
   let tagsWhere
   if (req.body.tags) {
-    console.log(req.body.tags)
     tagsWhere = {
       tags: { [Op.contains]: req.body.tags },
     }

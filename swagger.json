@@ -451,11 +451,7 @@
           },
           "tags": {
             "type": "string",
-            "example": "tags"
-          },
-          "approved": {
-            "type": "boolean",
-            "example": false
+            "example": ["tag-A"]
           },
 
           "slug": {
@@ -479,46 +475,6 @@
             "type": "integer",
             "format": "int64",
             "example": 0
-          },
-
-          "upvotes": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "views": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "reads": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "clicks": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-
-          "permissions": {
-            "type": "object"
-          },
-          "meta": {
-            "type": "object"
-          },
-          "payments": {
-            "type": "object"
-          },
-
-          "contentDate": {
-            "type": "integer",
-            "example": 2022
-          },
-          "content": {
-            "type": "string",
-            "example": "content"
           }
         }
       },
@@ -541,7 +497,7 @@
           },
           "tags": {
             "type": "string",
-            "example": "tags"
+            "example": ["tag-A"]
           },
           "approved": {
             "type": "boolean",
