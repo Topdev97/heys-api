@@ -15,7 +15,7 @@ module.exports = {
       slug: 'sample-doc-a',
       url: 'https://docs.google.com/spreadsheets/d/1CqPAGTcVnX5e01_5TaoUYnMPrclTvncPuESk8wo4pNQ/edit#gid=0',
       docUid: '1CqPAGTcVnX5e01_5TaoUYnMPrclTvncPuESk8wo4pNQ',
-      docId: 0,
+      docId: -1,
       docType: 1,
       gatheringId: 1,
     })
@@ -27,7 +27,7 @@ module.exports = {
       slug: 'sample-doc-b',
       url: 'https://docs.google.com/document/d/11OWpLcDsZP59U7uBHylBGnuluoCN0aQECIQLzzcTcVE/edit',
       docUid: '11OWpLcDsZP59U7uBHylBGnuluoCN0aQECIQLzzcTcVE',
-      docId: 1,
+      docId: -1,
       docType: 0,
       gatheringId: 1,
     })
@@ -38,7 +38,7 @@ module.exports = {
       slug: 'sample-doc-c',
       url: 'https://docs.google.com/document/d/1gTPIQMLVcv_OQ8flblVTCWWfrGadQNxZXNZTvDh6iKA/edit',
       docUid: '1gTPIQMLVcv_OQ8flblVTCWWfrGadQNxZXNZTvDh6iKA',
-      docId: 2,
+      docId: -1,
       docType: 0,
       gatheringId: 1,
     })

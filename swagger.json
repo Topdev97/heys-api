@@ -81,7 +81,7 @@
       }
     },
     "/api/doc/gathering/{gatheringId}": {
-      "get": {
+      "post": {
         "tags": ["doc"],
         "summary": "Find docs from a gathering",
         "description": "Returns a docs for a gathering",
@@ -98,6 +98,63 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "Filter",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Filter"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid gatheringId supplied"
+          }
+        }
+      }
+    },
+    "/api/doc/gathering/{gatheringId}/docIds": {
+      "post": {
+        "tags": ["doc"],
+        "summary": "Find docs from a gathering by docId array",
+        "description": "Returns docs for a gathering",
+        "operationId": "getDocsByDocIds",
+        "parameters": [
+          {
+            "name": "gatheringId",
+            "in": "path",
+            "description": "Id of gathering where the docs are",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "DocIdBody",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DocIdBody"
+              }
+            }
+          },
+          "required": false
+        },
         "responses": {
           "200": {
             "description": "successful operation",
@@ -440,11 +497,7 @@
           },
           "tags": {
             "type": "string",
-            "example": "tags"
-          },
-          "approved": {
-            "type": "boolean",
-            "example": false
+            "example": ["tag-A"]
           },
 
           "slug": {
@@ -468,46 +521,6 @@
             "type": "integer",
             "format": "int64",
             "example": 0
-          },
-
-          "upvotes": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "views": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "reads": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-          "clicks": {
-            "type": "integer",
-            "format": "int64",
-            "example": 1
-          },
-
-          "permissions": {
-            "type": "object"
-          },
-          "meta": {
-            "type": "object"
-          },
-          "payments": {
-            "type": "object"
-          },
-
-          "contentDate": {
-            "type": "integer",
-            "example": 2022
-          },
-          "content": {
-            "type": "string",
-            "example": "content"
           }
         }
       },
@@ -530,7 +543,7 @@
           },
           "tags": {
             "type": "string",
-            "example": "tags"
+            "example": ["tag-A"]
           },
           "approved": {
             "type": "boolean",
@@ -679,6 +692,44 @@
             "type": "integer",
             "format": "int64",
             "example": 1
+          }
+        }
+      },
+      "Filter": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64",
+            "example": 0
+          },
+          "search": {
+            "type": "string",
+            "example": "cats"
+          },
+          "tags": {
+            "type": "string",
+            "example": ["tag-A"]
+          },
+          "sort": {
+            "type": "string",
+            "example": "Hot"
+          },
+          "type": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1
+          }
+        }
+      },
+      "DocIdBody": {
+        "required": [],
+        "type": "object",
+        "properties": {
+          "docIds": {
+            "type": "string",
+            "example": [1]
           }
         }
       }

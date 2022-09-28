@@ -1,7 +1,9 @@
+import { serialize } from 'v8'
 import db from '../db'
 const Doc = db.doc
 const Sequelize = db.Sequelize
 const Op = db.Sequelize.Op
+
 // Create and Save a new Doc
 async function create(req, res) {
   // Validate request
@@ -37,11 +39,6 @@ async function create(req, res) {
   calculatedDocData.content = 'This is the content of the doc'
   calculatedDocData.contentDate = Date.now()
 
-  console.log({
-    ...calculatedDocData,
-    ...docData,
-  })
-
   // Save Doc in the database
   await Doc.create({
     ...calculatedDocData,
@@ -56,12 +53,42 @@ async function create(req, res) {
       })
     })
 }
+
 // Retrieve all Doc from the database.
 async function findAll(req, res) {
   const gatheringId = req.params.gatheringId
+
+  let where = {
+    gatheringId,
+    approved: true,
+  } as any
+
+  let searchWhere
+  if (req.body.search) {
+    searchWhere = {
+      [Op.or]: [
+        { title: { [Op.iLike]: `%${req.body.search}%` } },
+        { description: { [Op.iLike]: `%${req.body.search}%` } },
+      ],
+    }
+  }
+
+  let tagsWhere
+  if (req.body.tags) {
+    tagsWhere = {
+      tags: { [Op.contains]: req.body.tags },
+    }
+  }
+
+  if (searchWhere || tagsWhere) {
+    where = { [Op.and]: [where] }
+    if (searchWhere) where[Op.and].push(searchWhere)
+    if (tagsWhere) where[Op.and].push(tagsWhere)
+  }
+
   await Doc.findAll({
-    order: [['updatedAt', 'DESC']],
-    where: { gatheringId, approved: true },
+    order: [['createdAt', 'DESC']],
+    where,
     limit: 10,
   })
     .then(data => {
@@ -69,10 +96,38 @@ async function findAll(req, res) {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || 'Some error occurred while retrieving Doc.',
+        message: err.message || 'Some error occurred while retrieving Docs.',
       })
     })
 }
+
+// Retrieve Docs for an array of docIds.
+async function findByDocId(req, res) {
+  const gatheringId = req.params.gatheringId
+  const docIds = req.body.docIds.slice(0, 20)
+
+  let where = {
+    gatheringId,
+    [Op.or]: docIds.map(docId => ({
+      docId,
+    })),
+  } as any
+
+  await Doc.findAll({
+    order: [['createdAt', 'DESC']],
+    where,
+    limit: 20,
+  })
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving Docs.',
+      })
+    })
+}
+
 // Find a single Doc with an id
 async function findOne(req, res) {
   const id = req.params.id
@@ -93,6 +148,7 @@ async function findOne(req, res) {
       })
     })
 }
+
 // Update a Doc by the id in the request
 async function update(req, res) {
   const id = req.params.id
@@ -117,6 +173,7 @@ async function update(req, res) {
       })
     })
 }
+
 // Delete a Doc with the specified id in the request
 async function deleteOne(req, res) {
   const id = req.params.id
@@ -141,6 +198,7 @@ async function deleteOne(req, res) {
       })
     })
 }
+
 // Delete all Doc from the database.
 async function deleteAll(req, res) {
   await Doc.destroy({
@@ -204,6 +262,7 @@ async function filter(req, res) {
 module.exports = {
   create,
   findAll,
+  findByDocId,
   findOne,
   update,
   deleteOne,

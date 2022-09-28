@@ -1,13 +1,14 @@
 import express from 'express'
 // import morgan from "morgan"
+import 'dotenv/config'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import bearerToken from 'express-bearer-token'
 import errorMiddleware from './src/middlewares/error.middleware'
 import swaggerUi from 'swagger-ui-express'
 import { Umzug, SequelizeStorage } from 'umzug'
+import { startListeners } from './src/web3'
 import swaggerDocument from './swagger.json'
-import 'dotenv/config'
 
 const app = express()
 const port = process.env.PORT ?? 3000
@@ -57,6 +58,8 @@ db.sequelize
   .catch(err => {
     console.log('Failed to sync db: ' + err.message)
   })
+
+startListeners()
 
 app.use(morgan('tiny'))
 
